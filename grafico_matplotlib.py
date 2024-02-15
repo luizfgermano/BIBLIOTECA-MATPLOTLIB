@@ -16,11 +16,13 @@ df.info()
 
 # passo 1 iniciando um gráfico simples ---------------------------------------------
 
+
 #criando grafico passando df['data'] par o eixo x, e df['temperatura'] eixo y
 plt.plot(df['data'], df['temperatura'])
 
 
 # apasso 2 -----------------------------------------------------------------------
+
 
 plt.plot(figsize=(15,8)) # passando o tamanho do grafico
 plt.plot(df['data'], df['temperatura']) # eixo x df['data'], eixo y df['temperatura']
@@ -29,6 +31,7 @@ plt.title('Temperatura no Tempo') # passando um titulo para o gráfico
 
 # passo 3 -----------------------------------------------------------------------
 
+
 #esta criando uma nova figura passando o tamanho 
 fig = plt.figure(figsize=(15,8))
 #fazendo um eixo para colocar o gráfico dentro
@@ -36,7 +39,9 @@ eixo = fig.add_axes([0, 0, 1, 1])
 eixo.plot(df['data'], df['temperatura'])
 eixo.set_title('temperatura no momento') # colocando um titulo no grafico
 
+
 # passo 4 -----------------------------------------------------------------------
+
 
 #esta criando uma nova figura dentro de uma variavel, passando o tamanho 
 fig = plt.figure(figsize=(15,8))
@@ -50,7 +55,9 @@ eixo.set_ylabel('Temperatura', fontsize= 20)
 # colocando um titulo no eixo x, e passando o tamanho da fonte do eixo
 eixo.set_xlabel('Data', fontsize=20)
 
+
 # passo 5 criando uma legenda e trocando cor do gráfico -------------------------------
+
 
 #esta criando uma nova figura dentro de uma variavel, passando o tamanho 
 fig = plt.figure(figsize=(15,8))
@@ -87,6 +94,7 @@ eixo.legend(['temperatura'], loc = 'lower right', fontsize=15)#loc colocando o l
 
 
 # passo 6 mexendo no estilo da linhas ----------------------------------------------------
+
 
 #esta criando uma nova figura dentro de uma variavel, passando o tamanho 
 fig = plt.figure(figsize=(15,8))
@@ -286,7 +294,7 @@ eixo2.set_xlabel('Data', fontsize=10)
 eixo2.grid(True)
 
 
-# passo 14 ---------------------------------
+# passo 14 personalizando gráfico ---------------------------------
 
 
 fig = plt.figure(figsize=(15,8))
@@ -321,10 +329,315 @@ eixo2.set_xlabel('Data', fontsize=10)
 eixo2.grid(True)
 
 
+#passo 15 colocando uma linha de maximo e minimo no gráfico -----------------------------
+
+
+fig = plt.figure(figsize= (15,8))
+#passando o tamanho do eixo
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico e colocando cor
+eixo.plot(df['data'], df['temperatura'], color='g')
+#criando titulo, colocando tamanho no titulo e deixabdo espaço entre o grafico e o titulo
+eixo.set_title('Temperatura no momento', fontsize=25, pad=20)
+#colocando titulo no eixo x
+eixo.set_xlabel('DATA', fontsize=20)
+#colocando titulo no eixo y
+eixo.set_ylabel('TEMPERATURA', fontsize=20)
+#criando legenda, e colocando num lugar do gráfico
+eixo.legend(df['temperatura'], loc='lower right', fontsize=15)
+#colocando grade no fundo do gráfico
+eixo.grid(True)
+# criando linha de maximo
+eixo.axhline(max(df['temperatura']), color='k', linestyle='--')
+# criando linha de minimo
+eixo.axhline(min(df['temperatura']), color='k', linestyle='--')
+
+
+#passo 16 fazendo anotação na linha de maximo -----------------------------
+
+
+fig = plt.figure(figsize= (15,8))
+#passando o tamanho do eixo
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico e colocando cor
+eixo.plot(df['data'], df['temperatura'], color='g')
+#criando titulo, colocando tamanho no titulo e deixabdo espaço entre o grafico e o titulo
+eixo.set_title('Temperatura no momento', fontsize=25, pad=20)
+#colocando titulo no eixo x
+eixo.set_xlabel('DATA', fontsize=20)
+#colocando titulo no eixo y
+eixo.set_ylabel('TEMPERATURA', fontsize=20)
+#criando legenda, e colocando num lugar do gráfico
+eixo.legend(df['temperatura'], loc='lower right', fontsize=15)
+#colocando grade no fundo do gráfico
+eixo.grid(True)
+
+
+x1 = df['data'][df['temperatura'].idxmax()]
+y1 = max(df['temperatura'])
+
+eixo.annotate('Máximo', xy=(x1,y1), fontsize=20)
+
+
+# criando linha de maximo
+eixo.axhline(max(df['temperatura']), color='k', linestyle='--')
+# criando linha de minimo
+eixo.axhline(min(df['temperatura']), color='k', linestyle='--')
+
+
+#passo 17 personalizando linha de máximo e colocando seta indicadora -------------
+
+
+fig = plt.figure(figsize= (15,8))
+#passando o tamanho do eixo
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico e colocando cor
+eixo.plot(df['data'], df['temperatura'], color='g')
+#criando titulo, colocando tamanho no titulo e deixabdo espaço entre o grafico e o titulo
+eixo.set_title('Temperatura no momento', fontsize=25, pad=20)
+#colocando titulo no eixo x
+eixo.set_xlabel('DATA', fontsize=20)
+#colocando titulo no eixo y
+eixo.set_ylabel('TEMPERATURA', fontsize=20)
+#criando legenda, e colocando num lugar do gráfico
+eixo.legend(df['temperatura'], loc='lower right', fontsize=15)
+#colocando grade no fundo do gráfico
+eixo.grid(True)
+
+
+x1 = df['data'][df['temperatura'].idxmax()]
+y1 = max(df['temperatura'])
+
+x2 = df['data'][df['temperatura'].idxmax() - 7000]
+y2 = max(df['temperatura']) - 5
+
+
+eixo.annotate('Máximo', xy=(x1,y1), fontsize=20, xytext=(x2,y2),
+              arrowprops= dict(facecolor='k'))
+
+
+# criando linha de maximo
+eixo.axhline(max(df['temperatura']), color='k', linestyle='--')
+# criando linha de minimo
+eixo.axhline(min(df['temperatura']), color='k', linestyle='--')
 
 
 
+#passo 18 personalizando linha de minimo e colocando seta indicadora -------------
 
+
+fig = plt.figure(figsize= (15,8))
+#passando o tamanho do eixo
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico e colocando cor
+eixo.plot(df['data'], df['temperatura'], color='g')
+#criando titulo, colocando tamanho no titulo e deixabdo espaço entre o grafico e o titulo
+eixo.set_title('Temperatura no momento', fontsize=25, pad=20)
+#colocando titulo no eixo x
+eixo.set_xlabel('DATA', fontsize=20)
+#colocando titulo no eixo y
+eixo.set_ylabel('TEMPERATURA', fontsize=20)
+#criando legenda, e colocando num lugar do gráfico
+eixo.legend(df['temperatura'], loc='lower right', fontsize=15)
+#colocando grade no fundo do gráfico
+eixo.grid(True)
+
+
+x1 = df['data'][df['temperatura'].idxmax()]
+y1 = max(df['temperatura'])
+
+x2 = df['data'][df['temperatura'].idxmax() - 7000]
+y2 = max(df['temperatura']) - 5
+
+
+eixo.annotate('Máximo', xy=(x1,y1), fontsize=20, xytext=(x2,y2),
+              arrowprops= dict(facecolor='k'))
+
+
+
+x1 = df['data'][df['temperatura'].idxmin()]
+y1 = min(df['temperatura'])
+
+x2 = df['data'][df['temperatura'].idxmin() - 7000]
+y2 = min(df['temperatura']) - 5
+
+
+eixo.annotate('Mínimo', xy=(x1,y1), fontsize=20, xytext=(x2,y2),
+              arrowprops= dict(facecolor='k'))
+
+
+# criando linha de maximo
+eixo.axhline(max(df['temperatura']), color='k', linestyle='--')
+# criando linha de minimo
+eixo.axhline(min(df['temperatura']), color='k', linestyle='--')
+
+
+#------------------------------------------------------------------------------
+# 01 ----------- criando novo gráfico --------------------------
+#------------------------------------------------------------------------------
+
+
+#agupando e tirando a média 
+temperatura_por_dia_semana = df.groupby('dia_da_semana')['temperatura'].mean()
+
+#for i in temperatura_por_dia_semana.keys():
+#    print(i)
+
+#colocando a orde da semana na variavel
+nome_dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+
+# deixando em orde os dias da semana 
+temperatura_por_dia_semana = temperatura_por_dia_semana[nome_dias]
+
+
+# criando gráfico --------------------------------------------------------
+
+fig = plt.figure(figsize=(15,8))
+
+eixo = fig.add_axes([0, 0, 1, 1])
+
+indice = range(len(temperatura_por_dia_semana))
+
+eixo.bar(indice, temperatura_por_dia_semana)
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+#colocando titulo no eixo x
+eixo.set_xlabel('Dia da semana', fontsize=15)
+#colocando titulo no eixo y
+eixo.set_ylabel('Temperatura Média', fontsize=15)
+
+
+# 02 colocando dias da semana no eixo x  --------------------------
+
+
+fig = plt.figure(figsize=(15,8))
+
+eixo = fig.add_axes([0, 0, 1, 1])
+
+indice = range(len(temperatura_por_dia_semana))
+
+eixo.bar(indice, temperatura_por_dia_semana)
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+#colocando titulo no eixo x
+eixo.set_xlabel('Dia da semana', fontsize=15)
+#colocando titulo no eixo y
+eixo.set_ylabel('Temperatura Média', fontsize=15)
+
+eixo.set_xticks(indice)
+
+eixo.set_xticklabels(nome_dias)
+
+
+# 03 colocando cores no gráfico de barras  --------------------------
+
+
+fig = plt.figure(figsize=(15,8))
+
+eixo = fig.add_axes([0, 0, 1, 1])
+
+indice = range(len(temperatura_por_dia_semana))
+
+cores = ['black', 'r', 'g', 'b', 'yellow', 'orange', 'magenta']
+
+
+eixo.bar(indice, temperatura_por_dia_semana, color=cores)# colocando as cores da lista cores
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+#colocando titulo no eixo x
+eixo.set_xlabel('Dia da semana', fontsize=15)
+#colocando titulo no eixo y
+eixo.set_ylabel('Temperatura Média', fontsize=15)
+
+eixo.set_xticks(indice)
+
+eixo.set_xticklabels(nome_dias)
+
+
+# 04 colocando borda preta nas barra do gráfico   --------------------------
+
+
+fig = plt.figure(figsize=(15,8))
+
+eixo = fig.add_axes([0, 0, 1, 1])
+
+indice = range(len(temperatura_por_dia_semana))
+
+cores = ['black', 'r', 'g', 'b', 'yellow', 'orange', 'magenta']
+
+# colocando as cores da lista cores, e colocando borda preta nas barra do gráfico 
+eixo.bar(indice, temperatura_por_dia_semana, color=cores, edgecolor='black')
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+#colocando titulo no eixo x
+eixo.set_xlabel('Dia da semana', fontsize=15)
+#colocando titulo no eixo y
+eixo.set_ylabel('Temperatura Média', fontsize=15)
+
+eixo.set_xticks(indice)
+
+eixo.set_xticklabels(nome_dias)
+
+
+#--------------------------------------------------------------------------------
+# 01 criando gráfico de pizza --------------------------------------------------
+#--------------------------------------------------------------------------------
+
+
+fig = plt.figure(figsize=(5,4))
+
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico de pizza 
+eixo.pie(temperatura_por_dia_semana, labels=temperatura_por_dia_semana.index)
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+
+
+# 02 colocando o percentual no dentro do gráfico de pizza --------------------------------------------------
+
+
+fig = plt.figure(figsize=(5,4))
+
+eixo = fig.add_axes([0,0,1,1])
+#criando gráfico de pizza 
+eixo.pie(temperatura_por_dia_semana, labels=temperatura_por_dia_semana.index,
+         autopct='%.1f%%')#colocando a porcentagem no fráfico
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+
+
+# 03 personalizando gráfico de pizza separando as fatias ----------------------------------------
+
+
+fig = plt.figure(figsize=(5,4))
+
+eixo = fig.add_axes([0,0,1,1])
+
+#passando a mediada que a parte vai separar do gráfico
+explodir = [0.1, 0, 0, 0, 0, 0.1, 0.1]
+
+#criando gráfico de pizza, colocando a porcentagem no gráfico
+eixo.pie(temperatura_por_dia_semana, labels=temperatura_por_dia_semana.index,
+         autopct='%.1f%%', explode=explodir)# separando dias da semana do gráfico
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
+
+
+# 04 personalizando, colocando uma sombra no grafico ----------------------------------------
+
+
+fig = plt.figure(figsize=(5,4))
+
+eixo = fig.add_axes([0,0,1,1])
+
+#passando a mediada que a parte vai separar do gráfico
+explodir = [0.1, 0, 0, 0, 0, 0.1, 0.1]
+
+#criando gráfico de pizza, colocando a porcentagem no gráfico e separando dias da semana do gráfico
+eixo.pie(temperatura_por_dia_semana, labels=temperatura_por_dia_semana.index,
+         autopct='%.1f%%', explode=explodir, shadow=True)# colocando sombra
+# colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
+eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
 
 
 
