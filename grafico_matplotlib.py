@@ -1,4 +1,5 @@
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
@@ -638,25 +639,4 @@ eixo.pie(temperatura_por_dia_semana, labels=temperatura_por_dia_semana.index,
          autopct='%.1f%%', explode=explodir, shadow=True)# colocando sombra
 # colocando titulo, tamanha da fonte do titulo e um espaço do gráfico entre o titulo
 eixo.set_title('Temperatura por dia da semana', fontsize=15, pad=10)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
